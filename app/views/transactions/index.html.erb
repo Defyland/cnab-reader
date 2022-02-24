@@ -1,0 +1,21 @@
+<main role="main">
+
+  <section class="jumbotron text-center">
+    <div class="container">
+      <div class="form-group">
+        <h3 class="jumbotron-heading">Import CNAB</h3>
+      </div>
+    </div>
+  </section>
+  <section class="jumbotron text-left">
+    <div class="container">
+      <div class="form-group">
+        <%= form_with(url: "/import_cnab", multipart: true, method: "post", class: "form-control-file") do %>
+          <%= file_field(:transaction, :cnab_file) %>
+          <%= submit_tag("Import") %>
+        <% end %>
+      </div>
+    </div>
+  </section>
+  
+</main>

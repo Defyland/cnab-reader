@@ -1,0 +1,45 @@
+<div class="col-md-4">
+  <div class="card mb-4 shadow-sm">
+    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+    <div class="card-body">
+      <p class="card-text">Name: <%= @store.name %></p>
+      <p class="card-text">Representante: <%= @store.representative %></p>
+    </div>
+  </div>
+</div>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Tipo da transação</th>
+      <th scope="col">Cartão</th>
+      <th scope="col">CPF do beneficiário</th>
+      <th scope="col">Data da ocorrência</th>
+      <th scope="col">Hora</th>
+      <th scope="col">Valor da movimentação</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @transactions.map do |transaction|  %>
+      <tr>
+        <th scope="row"><%= transaction.type_of_transaction.capitalize %></th>
+        <td><%= transaction.card %></td>
+        <td><%= transaction.cpf %></td>
+        <td><%= transaction.date_with_fuso.strftime("%Y-%m-%d") %></td>
+        <td><%= transaction.date_with_fuso.strftime("%H:%M:%S") %></td>
+        <td><%= number_to_currency(transaction.value, unit: "R$") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<table class="table table">
+  <thead class="thead-dark">
+    <tr style="text-align: end;">
+      <th scope="col">Saldo em conta</th>
+    </tr>
+  </thead>
+  <tbody>
+   <tr style="text-align: end;">
+      <th class="table-secondary"><%= number_to_currency(@store.balance, unit: "R$")%></th>
+    <tr> 
+  </tbody>
+</table>
